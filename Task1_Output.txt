@@ -1,0 +1,236 @@
+/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/bin/java -javaagent:/Users/griffinrobinson/Applications/IntelliJ IDEA Ultimate.app/Contents/lib/idea_rt.jar=51173 -Dfile.encoding=UTF-8 -classpath /Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/charsets.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/cldrdata.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/dnsns.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/jaccess.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/localedata.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/nashorn.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/sunec.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/sunjce_provider.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/sunpkcs11.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/ext/zipfs.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/jce.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/jfr.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/jsse.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/management-agent.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/resources.jar:/Users/griffinrobinson/Library/Java/JavaVirtualMachines/liberica-1.8.0_442/jre/lib/rt.jar:/Users/griffinrobinson/Library/CloudStorage/OneDrive-Personal/Trent/2240-Software Design & Modelling/Assignments/Assignment-3/COIS-2240-Assignment3/out/production/COIS-2240-Assignment3 src.VehicleRentalApp
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 001
+Enter name: George
+src.Customer added.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+2
+Enter customer ID: 002
+Enter name: Anne
+src.Customer added.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: src.Car
+  2: src.Motorcycle
+  3: src.Truck
+1
+Enter license plate: AAA111
+Enter make: Toyota
+Enter model: Corolla
+Enter year: 2019
+Enter number of seats: 5
+src.Car added successfuly.
+src.Vehicle added.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: src.Car
+  2: src.Motorcycle
+  3: src.Truck
+1
+Enter license plate: BBB222
+Enter make: Honda
+Enter model: Civic
+Enter year: 2021
+Enter number of seats: 5
+src.Car added successfuly.
+src.Vehicle added.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+1
+  1: src.Car
+  2: src.Motorcycle
+  3: src.Truck
+1
+Enter license plate: CCC333
+Enter make: Ford
+Enter model: Focus
+Enter year: 2024
+Enter number of seats: 5
+src.Car added successfuly.
+src.Vehicle added.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     src.Car          |	AAA111	|	Toyota	|	Corolla	|	2019	|	
+|     src.Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+|     src.Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: AAA111
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: George
+Enter rental amount: 500
+src.Vehicle rented to George
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     src.Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+|     src.Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: CCC333
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: George
+Enter rental amount: 500
+src.Vehicle rented to George
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     src.Car          |	BBB222	|	Honda	|	Civic	|	2021	|	
+
+Enter license plate: BBB222
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: Anne
+Enter rental amount: 500
+src.Vehicle rented to Anne
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+
+Enter license plate: CCC333
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: Anne
+Enter rental amount: 500
+src.Vehicle is not available for renting.
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+4
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+
+Enter license plate: CCC333
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: George
+Enter return fees: 50
+src.Vehicle returned by George
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+3
+List of Vehicles:
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+|     src.Car          |	CCC333	|	Ford	|	Focus	|	2024	|	
+
+Enter license plate: CCC333
+Registered Customers:
+  src.Customer ID: 1 | Name: George
+  src.Customer ID: 2 | Name: Anne
+Enter customer name: Anne
+Enter rental amount: 500
+src.Vehicle rented to Anne
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+5
+|     Type         |	Plate	|	Make	|	Model	|	Year	|
+---------------------------------------------------------------------------------
+
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+6
+Rental History:
+RENT | Plate: AAA111 | src.Customer: George | Date: 2025-04-04 | Amount: $500.0
+RENT | Plate: CCC333 | src.Customer: George | Date: 2025-04-04 | Amount: $500.0
+RENT | Plate: BBB222 | src.Customer: Anne | Date: 2025-04-04 | Amount: $500.0
+RETURN | Plate: CCC333 | src.Customer: George | Date: 2025-04-04 | Amount: $50.0
+RENT | Plate: CCC333 | src.Customer: Anne | Date: 2025-04-04 | Amount: $500.0
+1: Add src.Vehicle
+2: Add src.Customer
+3: Rent src.Vehicle
+4: Return src.Vehicle
+5: Display Available Vehicles
+6: Show Rental History
+7: Exit
+7
+
+Process finished with exit code 0

@@ -1,2 +1,0 @@
-|     src.Car          | CAR-123 | Toyota | Camry | 4 | AVAILABLE | | Seats: 5
-|     src.Motorcycle   | MOTO-999 | Harley | Bike | 1999 | AVAILABLE | | Sidecar: No
