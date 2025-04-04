@@ -4,10 +4,14 @@ import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+/**
+ * The type Rental system.
+ */
 public class RentalSystem {
     private List<Vehicle> vehicles = new ArrayList<>();
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
+    private static RentalSystem instance;
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
@@ -40,9 +44,9 @@ public class RentalSystem {
     }    
 
     public void displayAvailableVehicles() {
-    	System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
-    	System.out.println("---------------------------------------------------------------------------------");
-    	 
+        System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
+        System.out.println("---------------------------------------------------------------------------------");
+        
         for (Vehicle v : vehicles) {
             if (v.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
                 System.out.println("|     " + (v instanceof Car ? "src.Car          " : "src.Motorcycle   ") + "|\t" + v.getLicensePlate() + "\t|\t" + v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
@@ -90,5 +94,18 @@ public class RentalSystem {
             if (c.getCustomerName().equalsIgnoreCase(name))
                 return c;
         return null;
+    }
+
+    /**
+     * Gets instance.
+     *
+     * @return the instance
+     */
+    public static RentalSystem getInstance() {
+        if (instance == null) {
+            instance = new RentalSystem();
+        }
+        
+        return instance;
     }
 }

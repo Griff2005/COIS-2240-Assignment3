@@ -6,7 +6,7 @@ import java.time.LocalDate;
 public class VehicleRentalApp {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        RentalSystem rentalSystem = new RentalSystem();
+        RentalSystem rentalSystem = RentalSystem.getInstance();
 
         while (true) {
         	System.out.println("1: Add src.Vehicle\n2: Add src.Customer\n3: Rent src.Vehicle\n4: Return src.Vehicle\n5: Display Available Vehicles\n6: Show Rental History\n7: Exit");
@@ -134,7 +134,7 @@ public class VehicleRentalApp {
                     rentalSystem.displayRentalHistory();
                     break;
                     
-                case 0:
+                case 7:
                 	scanner.close();
                     System.exit(0);
             }
