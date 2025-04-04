@@ -1,0 +1,3 @@
+|     src.Car          | 12345 | Toyota | Camry | 2005 | AVAILABLE | | Seats: 7
+|     src.Motorcycle   | 98765 | Honda | Bike | 2016 | AVAILABLE | | Sidecar: No
+|     src.Car          | 12345 | Toyota | Camry | 2005 | AVAILABLE | | Seats: 5

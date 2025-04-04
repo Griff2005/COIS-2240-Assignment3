@@ -1,5 +1,8 @@
 package src;
 
+import java.awt.*;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,6 +18,7 @@ public class RentalSystem {
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
+        saveVehicle(vehicle);
     }
 
     public void addCustomer(Customer customer) {
@@ -49,7 +53,7 @@ public class RentalSystem {
         
         for (Vehicle v : vehicles) {
             if (v.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
-                System.out.println("|     " + (v instanceof Car ? "src.Car          " : "src.Motorcycle   ") + "|\t" + v.getLicensePlate() + "\t|\t" + v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
+                System.out.println("|     " + (v instanceof Car ? "src.Car          " : (v instanceof Motorcycle ? "src.Motorcycle   " : "src.Truck        ")) + "|\t" + v.getLicensePlate() + "\t|\t" + v.getMake() + "\t|\t" + v.getModel() + "\t|\t" + v.getYear() + "\t|\t");
             }
         }
         System.out.println();
@@ -116,7 +120,12 @@ public class RentalSystem {
      * @param vehicle The vvehicle information to be saved
      */
     private void saveVehicle(Vehicle vehicle) {
-
+        try (FileWriter fileWriter = new FileWriter("storage/vehicles.txt", true)) {
+            String info = "|     " + (vehicle instanceof Car ? "src.Car          " : (vehicle instanceof Motorcycle ? "src.Motorcycle   " : "src.Truck        ")) + vehicle.getInfo() + "\n";
+            fileWriter.write(info);
+        } catch(IOException e) {
+            throw new RuntimeException("Failed to save vehicle details", e);
+        }
     }
 
     /**
