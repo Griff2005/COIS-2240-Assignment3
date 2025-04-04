@@ -108,4 +108,32 @@ public class RentalSystem {
         
         return instance;
     }
+
+
+    /**
+     * Saves vehicle details to vehicles.txt
+     *
+     * @param vehicle The vvehicle information to be saved
+     */
+    private void saveVehicle(Vehicle vehicle) {
+
+    }
+
+    /**
+     * Saves customer details to customers.txt
+     *
+     * @param customer The customer information to be saved
+     */
+    private void saveCustomer(Customer customer) {
+
+    }
+
+    /**
+     * Saves rental record details to rental_records.txt
+     *
+     * @param record The rental record information to be saved
+     */
+    private void saveRecord(RentalRecord record) {
+
+    }
 }
