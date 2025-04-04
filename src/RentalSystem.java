@@ -18,14 +18,26 @@ public class RentalSystem {
         loadData();
     }
 
-    public void addVehicle(Vehicle vehicle) {
-        vehicles.add(vehicle);
-        saveVehicle(vehicle);
+    public boolean addVehicle(Vehicle vehicle) {
+        if (findVehicleByPlate(vehicle.getLicensePlate()) == (null)) {
+            vehicles.add(vehicle);
+            saveVehicle(vehicle);
+            return true;
+        } else {
+            System.out.println("Vehicle with licence plate '" + vehicle.getLicensePlate() + "' already exists.");
+            return false;
+        }
     }
 
-    public void addCustomer(Customer customer) {
-        customers.add(customer);
-        saveCustomer(customer);
+    public boolean addCustomer(Customer customer) {
+        if (findCustomerById(customer.getCustomerId()) == null) {
+            customers.add(customer);
+            saveCustomer(customer);
+            return true;
+        } else {
+            System.out.println("Customer with ID '" + customer.getCustomerId() + "' already exists");
+            return false;
+        }
     }
 
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
