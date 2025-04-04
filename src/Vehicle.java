@@ -18,7 +18,7 @@ public abstract class Vehicle {
     }
     
     private String capitalize(String input) {
-        return input.substring(0, 1).toUpperCase() + make.substring(1).toLowerCase();
+        return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
 
     public Vehicle() {
