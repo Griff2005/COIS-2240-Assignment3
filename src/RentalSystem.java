@@ -23,13 +23,16 @@ public class RentalSystem {
 
     public void addCustomer(Customer customer) {
         customers.add(customer);
+        saveCustomer(customer);
     }
 
     public void rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
             vehicle.setStatus(Vehicle.VehicleStatus.RENTED);
-            rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, amount, "RENT"));
+            RentalRecord record = new RentalRecord(vehicle, customer, date, amount, "RENT");
+            rentalHistory.addRecord(record);
             System.out.println("src.Vehicle rented to " + customer.getCustomerName());
+            saveRecord(record);
         }
         else {
             System.out.println("src.Vehicle is not available for renting.");
@@ -39,8 +42,10 @@ public class RentalSystem {
     public void returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.RENTED) {
             vehicle.setStatus(Vehicle.VehicleStatus.AVAILABLE);
-            rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, extraFees, "RETURN"));
+            RentalRecord record = new RentalRecord(vehicle, customer, date, extraFees, "RETURN");
+            rentalHistory.addRecord(record);
             System.out.println("src.Vehicle returned by " + customer.getCustomerName());
+            saveRecord(record);
         }
         else {
             System.out.println("src.Vehicle is not rented.");
@@ -134,7 +139,12 @@ public class RentalSystem {
      * @param customer The customer information to be saved
      */
     private void saveCustomer(Customer customer) {
-
+        try (FileWriter fileWriter = new FileWriter("storage/customers.txt", true)) {
+            String info = customer.toString() + "\n";
+            fileWriter.write(info);
+        } catch(IOException e) {
+            throw new RuntimeException("Failed to save customer details", e);
+        }
     }
 
     /**
@@ -143,6 +153,11 @@ public class RentalSystem {
      * @param record The rental record information to be saved
      */
     private void saveRecord(RentalRecord record) {
-
+        try (FileWriter fileWriter = new FileWriter("storage/rental_records.txt", true)) {
+            String info = record.toString() + "\n";
+            fileWriter.write(info);
+        } catch(IOException e) {
+            throw new RuntimeException("Failed to save rental record details", e);
+        }
     }
 }
