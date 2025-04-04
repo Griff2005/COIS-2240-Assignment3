@@ -1,11 +1,9 @@
 package src;
 
-import java.awt.*;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * The type Rental system.
@@ -15,6 +13,10 @@ public class RentalSystem {
     private List<Customer> customers = new ArrayList<>();
     private RentalHistory rentalHistory = new RentalHistory();
     private static RentalSystem instance;
+
+    private RentalSystem() {
+        loadData();
+    }
 
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
@@ -158,6 +160,114 @@ public class RentalSystem {
             fileWriter.write(info);
         } catch(IOException e) {
             throw new RuntimeException("Failed to save rental record details", e);
+        }
+    }
+    
+    private void loadData() {
+        loadVehicles();
+        loadCustomers();
+        loadRentalRecords();
+    }
+
+    private void loadVehicles() {
+        File file = new File("storage/vehicles.txt");
+        if (!file.exists()) return;
+
+        try (Scanner scan = new Scanner(file)) {
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine().trim();
+                if (line.isEmpty()) continue;  // Skip empty lines
+
+                String[] rawParts = line.split("\\|");
+                List<String> partsList = new ArrayList<>();
+
+                // Clean the split results: remove empty elements
+                for (String part : rawParts) {
+                    part = part.trim();
+                    if (!part.isEmpty()) {
+                        partsList.add(part);
+                    }
+                }
+
+                if (partsList.size() < 7) {  // Now safe to check 7 parts (type, plate, make, model, year, status, extra info)
+                    System.out.println("Skipping invalid line: " + line);
+                    continue;
+                }
+
+                String type = partsList.get(0);     // src.Car, src.Motorcycle
+                String plate = partsList.get(1);
+                String make = partsList.get(2);
+                String model = partsList.get(3);
+                int year = Integer.parseInt(partsList.get(4));
+                Vehicle.VehicleStatus status = Vehicle.VehicleStatus.valueOf(partsList.get(5));
+                String extraInfo = partsList.get(6); // Seats: 5 or Sidecar: Yes
+
+                // Create object normally
+                Vehicle vehicle;
+                if (type.contains("Car")) {
+                    int seats = Integer.parseInt(extraInfo.split(":")[1].trim());
+                    vehicle = new Car(make, model, year, seats);
+                } else if (type.contains("Motorcycle")) {
+                    boolean hasSidecar = extraInfo.split(":")[1].trim().equalsIgnoreCase("Yes");
+                    vehicle = new Motorcycle(make, model, year, hasSidecar);
+                } else {
+                    continue;
+                }
+                vehicle.setLicensePlate(plate);
+                vehicle.setStatus(status);
+                vehicles.add(vehicle);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load vehicles", e);
+        }
+    }
+
+        private void loadCustomers() {
+            File file = new File("storage/customers.txt");
+            if (!file.exists()) return;
+
+            try (Scanner scan = new Scanner(file)) {
+                while (scan.hasNextLine()) {
+                    String line = scan.nextLine();
+                    String[] parts = line.split("\\|");
+                    if (parts.length < 2) continue;
+
+                    int id = Integer.parseInt(parts[0].split(":")[1].trim());
+                    String name = parts[1].split(":")[1].trim();
+
+                    customers.add(new Customer(id, name));
+                }
+            } catch (IOException e) {
+                throw new RuntimeException("Failed to load customers", e);
+            }
+        }
+
+    private void loadRentalRecords() {
+        File file = new File("storage/rental_records.txt");
+        if (!file.exists()) return;
+
+        try (Scanner scan = new Scanner(file)) {
+            while (scan.hasNextLine()) {
+                String line = scan.nextLine();
+                String[] parts = line.split("\\|");
+                if (parts.length < 5) continue;
+
+                String recordType = parts[0].trim();
+                String plate = parts[1].split(":")[1].trim();
+                String customerName = parts[2].split(":")[1].trim();
+                LocalDate date = LocalDate.parse(parts[3].split(":")[1].trim());
+                double amount = Double.parseDouble(parts[4].split("\\$")[1].trim());
+
+                Vehicle vehicle = findVehicleByPlate(plate);
+                Customer customer = findCustomerByName(customerName);
+
+                if (vehicle != null && customer != null) {
+                    rentalHistory.addRecord(new RentalRecord(vehicle, customer, date, amount, recordType));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load rental records", e);
         }
     }
 }
