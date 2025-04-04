@@ -39,12 +39,12 @@ public class VehicleRentalApp {
                         System.out.print("Has sidecar? (true/false): ");
                         boolean sidecar = scanner.nextBoolean();
                         vehicle = new Motorcycle(make, model, year, sidecar);
-                        System.out.print("src.Motorcycle added successfuly.");
+                        System.out.println("src.Motorcycle added successfuly.");
 		            } else if (type == 3) {
 		                System.out.print("Enter the cargo capacity: ");
 		                double cargoCapacity = scanner.nextDouble();
 		                vehicle = new Truck(make, model, year, cargoCapacity);
-		                System.out.print("src.Motorcycle added successfuly.");
+		                System.out.println("src.Truck added successfuly.");
 		            } else {
 		            	vehicle = null;
 		            }
@@ -52,10 +52,10 @@ public class VehicleRentalApp {
                     if (vehicle != null){
 	                    vehicle.setLicensePlate(plate);
 	                    rentalSystem.addVehicle(vehicle);
-	                    System.out.print("src.Vehicle added.");
+	                    System.out.println("src.Vehicle added.");
                     }
                     else {
-	                    System.out.print("src.Vehicle not added.");
+	                    System.out.println("src.Vehicle not added.");
                     }
                     break;
 
