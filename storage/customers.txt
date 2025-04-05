@@ -1,2 +1,0 @@
-src.Customer ID: 1 | Name: George
-src.Customer ID: 2 | Name: Anne

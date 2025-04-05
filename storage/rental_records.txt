@@ -1,5 +1,0 @@
-RENT | Plate: AAA111 | src.Customer: George | Date: 2025-04-04 | Amount: $500.0
-RENT | Plate: CCC333 | src.Customer: George | Date: 2025-04-04 | Amount: $500.0
-RENT | Plate: BBB222 | src.Customer: Anne | Date: 2025-04-04 | Amount: $500.0
-RETURN | Plate: CCC333 | src.Customer: George | Date: 2025-04-04 | Amount: $50.0
-RENT | Plate: CCC333 | src.Customer: Anne | Date: 2025-04-04 | Amount: $500.0
