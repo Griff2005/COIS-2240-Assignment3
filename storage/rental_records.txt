@@ -1,2 +1,4 @@
 RENT | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $500.0
 RETURN | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $20.0
+RENT | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $500.0
+RETURN | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $20.0
