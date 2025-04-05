@@ -3,7 +3,6 @@ package src;
 import java.io.*;
 import java.util.*;
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 /**
  * The type Rental system.
