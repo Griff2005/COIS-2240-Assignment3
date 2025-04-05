@@ -1,5 +1,7 @@
 package src;
 
+import jdk.nashorn.internal.ir.CatchNode;
+
 import java.util.Scanner;
 import java.time.LocalDate;
 
@@ -18,7 +20,6 @@ public class VehicleRentalApp {
                     System.out.println("  1: src.Car\n  2: src.Motorcycle\n  3: src.Truck");
                     int type = scanner.nextInt();
                     scanner.nextLine();
-
                     System.out.print("Enter license plate: ");
                     String plate = scanner.nextLine().toUpperCase();
                     System.out.print("Enter make: ");
@@ -40,22 +41,26 @@ public class VehicleRentalApp {
                         boolean sidecar = scanner.nextBoolean();
                         vehicle = new Motorcycle(make, model, year, sidecar);
                         System.out.println("src.Motorcycle added successfuly.");
-		            } else if (type == 3) {
-		                System.out.print("Enter the cargo capacity: ");
-		                double cargoCapacity = scanner.nextDouble();
-		                vehicle = new Truck(make, model, year, cargoCapacity);
-		                System.out.println("src.Truck added successfuly.");
-		            } else {
-		            	vehicle = null;
-		            }
+                    } else if (type == 3) {
+                        System.out.print("Enter the cargo capacity: ");
+                        double cargoCapacity = scanner.nextDouble();
+                        vehicle = new Truck(make, model, year, cargoCapacity);
+                        System.out.println("src.Truck added successfuly.");
+                    } else {
+                        vehicle = null;
+                    }
                     
                     if (vehicle != null){
-	                    vehicle.setLicensePlate(plate);
-	                    rentalSystem.addVehicle(vehicle);
-	                    System.out.println("src.Vehicle added.");
+                        try {
+                            vehicle.setLicensePlate(plate);
+                            rentalSystem.addVehicle(vehicle);
+                            System.out.println("src.Vehicle added.");
+                        } catch(IllegalArgumentException e) {
+                            System.out.println("ERROR: " + e.getMessage());
+                        }
                     }
                     else {
-	                    System.out.println("src.Vehicle not added.");
+                        System.out.println("src.Vehicle not added.");
                     }
                     break;
 
@@ -70,15 +75,15 @@ public class VehicleRentalApp {
                     System.out.println("src.Customer added.");
                     break;
                     
-                case 3:
-                	System.out.println("List of Vehicles:");
-                	rentalSystem.displayAvailableVehicles();
+                case 3: 
+                    System.out.println("List of Vehicles:");
+                    rentalSystem.displayAvailableVehicles();
 
                     System.out.print("Enter license plate: ");
                     String rentPlate = scanner.nextLine().toUpperCase();
 
-                	System.out.println("Registered Customers:");
-                	rentalSystem.displayAllCustomers();
+                    System.out.println("Registered Customers:");
+                    rentalSystem.displayAllCustomers();
 
                     System.out.print("Enter customer name: ");
                     String cnameRent = scanner.nextLine();
@@ -99,14 +104,14 @@ public class VehicleRentalApp {
                     break;
 
                 case 4:
-                	System.out.println("List of Vehicles:");
-                	rentalSystem.displayAvailableVehicles();
-
-                	System.out.print("Enter license plate: ");
+                    System.out.println("List of Vehicles:");
+                    rentalSystem.displayAvailableVehicles();
+                    
+                    System.out.print("Enter license plate: ");
                     String returnPlate = scanner.nextLine().toUpperCase();
                     
-                	System.out.println("Registered Customers:");
-                	rentalSystem.displayAllCustomers();
+                    System.out.println("Registered Customers:");
+                    rentalSystem.displayAllCustomers();
 
                     System.out.print("Enter customer name: ");
                     String cnameReturn = scanner.nextLine();
@@ -135,8 +140,8 @@ public class VehicleRentalApp {
                     rentalSystem.displayRentalHistory();
                     break;
                     
-                case 7:
-                	scanner.close();
+                case 7: 
+                    scanner.close();
                     System.exit(0);
             }
         }

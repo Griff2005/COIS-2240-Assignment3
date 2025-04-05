@@ -17,20 +17,26 @@ public abstract class Vehicle {
         this.licensePlate = null;
     }
     
+    protected Vehicle() {
+        this(null, null, 0);
+    }
+    
     private String capitalize(String input) {
         return input.substring(0, 1).toUpperCase() + input.substring(1).toLowerCase();
     }
-
-    public Vehicle() {
-        this(null, null, 0);
+    
+    private boolean isValidPlate(String plate) {
+        return plate != null && !plate.isEmpty() && plate.matches("[a-zA-Z]{3}\\d{3}");
     }
-
+    
     public void setLicensePlate(String plate) {
-        this.licensePlate = plate == null ? null : plate.toUpperCase();
+        if (!isValidPlate(plate))
+            throw new IllegalArgumentException("Invalid license plate format. Must be 3 letters followed by 3 digits (e.g., ABC123).");
+        this.licensePlate = plate.toUpperCase();
     }
 
     public void setStatus(VehicleStatus status) {
-    	this.status = status;
+        this.status = status;
     }
 
     public String getLicensePlate() { return licensePlate; }
