@@ -1,7 +1,5 @@
-package test;
-
 import org.junit.jupiter.api.Test;
-import src.Car;
+
 import src.*;
 import java.time.LocalDate;
 import java.lang.reflect.Constructor;
