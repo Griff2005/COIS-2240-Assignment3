@@ -1,5 +1,8 @@
 package src;
 
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.Context;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.common.processor.core.AbstractMasterDetailListProcessor;
+
 import java.io.*;
 import java.util.*;
 import java.time.LocalDate;
@@ -29,7 +32,38 @@ public class RentalSystem {
      * Instantiates a new Rental system.
      */
     private RentalSystem() {
+        vehicles = new ArrayList<>();
+        customers = new ArrayList<>();
+        rentalHistory = new RentalHistory();
         loadData();
+    }
+
+
+    /**
+     * Gets vehicles.
+     *
+     * @return the vehicles
+     */
+    public List<Vehicle> getVehicles() {
+        return vehicles;
+    }
+
+    /**
+     * Gets customers.
+     *
+     * @return the customers
+     */
+    public List<Customer> getCustomers() {
+        return customers;
+    }
+
+    /**
+     * Gets rental history.
+     *
+     * @return the rental history
+     */
+    public RentalHistory getRentalHistory() {
+        return rentalHistory;
     }
 
     /**
@@ -218,7 +252,11 @@ public class RentalSystem {
      */
     private void saveVehicle(Vehicle vehicle) {
         try (FileWriter fileWriter = new FileWriter("storage/vehicles.txt", true)) {
-            String info = "|     " + (vehicle instanceof Car ? "src.Car          " : (vehicle instanceof Motorcycle ? "src.Motorcycle   " : "src.Truck        ")) + vehicle.getInfo() + "\n";
+            String info;
+            if (vehicle instanceof Car) 
+                info = "|     " + "src.Car          " + vehicle.getInfo() + "\n";
+            else
+                info = "|     " + (vehicle instanceof Motorcycle ? "src.Motorcycle   " : "src.Truck        ") + vehicle.getInfo() + "\n";
             fileWriter.write(info);
         } catch(IOException e) {
             throw new RuntimeException("Failed to save vehicle details", e);
@@ -372,4 +410,5 @@ public class RentalSystem {
             throw new RuntimeException("Failed to load rental records", e);
         }
     }
+    
 }

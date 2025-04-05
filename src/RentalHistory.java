@@ -61,4 +61,8 @@ public class RentalHistory {
         }
         return result;
     }
+
+    public List<RentalRecord> getRecords() {
+        return rentalRecords;
+    }
 }
