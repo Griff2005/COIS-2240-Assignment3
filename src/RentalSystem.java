@@ -9,15 +9,36 @@ import java.util.stream.Collectors;
  * The type Rental system.
  */
 public class RentalSystem {
+    /**
+     * The Vehicles.
+     */
     private List<Vehicle> vehicles = new ArrayList<>();
+    /**
+     * The Customers.
+     */
     private List<Customer> customers = new ArrayList<>();
+    /**
+     * The Rental history.
+     */
     private RentalHistory rentalHistory = new RentalHistory();
+    /**
+     * The constant instance.
+     */
     private static RentalSystem instance;
 
+    /**
+     * Instantiates a new Rental system.
+     */
     private RentalSystem() {
         loadData();
     }
 
+    /**
+     * Add vehicle boolean.
+     *
+     * @param vehicle the vehicle
+     * @return the boolean
+     */
     public boolean addVehicle(Vehicle vehicle) {
         if (findVehicleByPlate(vehicle.getLicensePlate()) == (null)) {
             vehicles.add(vehicle);
@@ -29,6 +50,12 @@ public class RentalSystem {
         }
     }
 
+    /**
+     * Add customer boolean.
+     *
+     * @param customer the customer
+     * @return the boolean
+     */
     public boolean addCustomer(Customer customer) {
         if (findCustomerById(customer.getCustomerId()) == null) {
             customers.add(customer);
@@ -40,6 +67,15 @@ public class RentalSystem {
         }
     }
 
+    /**
+     * Rent vehicle boolean.
+     *
+     * @param vehicle  the vehicle
+     * @param customer the customer
+     * @param date     the date
+     * @param amount   the amount
+     * @return the boolean
+     */
     public boolean rentVehicle(Vehicle vehicle, Customer customer, LocalDate date, double amount) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.AVAILABLE) {
             vehicle.setStatus(Vehicle.VehicleStatus.RENTED);
@@ -55,6 +91,15 @@ public class RentalSystem {
         }
     }
 
+    /**
+     * Return vehicle boolean.
+     *
+     * @param vehicle   the vehicle
+     * @param customer  the customer
+     * @param date      the date
+     * @param extraFees the extra fees
+     * @return the boolean
+     */
     public boolean returnVehicle(Vehicle vehicle, Customer customer, LocalDate date, double extraFees) {
         if (vehicle.getStatus() == Vehicle.VehicleStatus.RENTED) {
             vehicle.setStatus(Vehicle.VehicleStatus.AVAILABLE);
@@ -68,8 +113,11 @@ public class RentalSystem {
             System.out.println("src.Vehicle is not rented.");
             return false;
         }
-    }    
+    }
 
+    /**
+     * Display available vehicles.
+     */
     public void displayAvailableVehicles() {
         System.out.println("|     Type         |\tPlate\t|\tMake\t|\tModel\t|\tYear\t|");
         System.out.println("---------------------------------------------------------------------------------");
@@ -81,25 +129,40 @@ public class RentalSystem {
         }
         System.out.println();
     }
-    
+
+    /**
+     * Display all vehicles.
+     */
     public void displayAllVehicles() {
         for (Vehicle v : vehicles) {
             System.out.println("  " + v.getInfo());
         }
     }
 
+    /**
+     * Display all customers.
+     */
     public void displayAllCustomers() {
         for (Customer c : customers) {
             System.out.println("  " + c.toString());
         }
     }
-    
+
+    /**
+     * Display rental history.
+     */
     public void displayRentalHistory() {
         for (RentalRecord record : rentalHistory.getRentalHistory()) {
             System.out.println(record.toString());
         }
     }
-    
+
+    /**
+     * Find vehicle by plate vehicle.
+     *
+     * @param plate the plate
+     * @return the vehicle
+     */
     public Vehicle findVehicleByPlate(String plate) {
         for (Vehicle v : vehicles) {
             if (v.getLicensePlate().equalsIgnoreCase(plate)) {
@@ -108,7 +171,13 @@ public class RentalSystem {
         }
         return null;
     }
-    
+
+    /**
+     * Find customer by id customer.
+     *
+     * @param id the id
+     * @return the customer
+     */
     public Customer findCustomerById(int id) {
         for (Customer c : customers)
             if (c.getCustomerId() == id)
@@ -116,6 +185,12 @@ public class RentalSystem {
         return null;
     }
 
+    /**
+     * Find customer by name customer.
+     *
+     * @param name the name
+     * @return the customer
+     */
     public Customer findCustomerByName(String name) {
         for (Customer c : customers)
             if (c.getCustomerName().equalsIgnoreCase(name))
@@ -178,13 +253,19 @@ public class RentalSystem {
             throw new RuntimeException("Failed to save rental record details", e);
         }
     }
-    
+
+    /**
+     * Load data.
+     */
     private void loadData() {
         loadVehicles();
         loadCustomers();
         loadRentalRecords();
     }
 
+    /**
+     * Load vehicles.
+     */
     private void loadVehicles() {
         File file = new File("storage/vehicles.txt");
         if (!file.exists()) return;
@@ -239,7 +320,10 @@ public class RentalSystem {
         }
     }
 
-        private void loadCustomers() {
+    /**
+     * Load customers.
+     */
+    private void loadCustomers() {
             File file = new File("storage/customers.txt");
             if (!file.exists()) return;
 
@@ -259,6 +343,9 @@ public class RentalSystem {
             }
         }
 
+    /**
+     * Load rental records.
+     */
     private void loadRentalRecords() {
         File file = new File("storage/rental_records.txt");
         if (!file.exists()) return;

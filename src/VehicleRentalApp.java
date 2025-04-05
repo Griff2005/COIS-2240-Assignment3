@@ -5,7 +5,15 @@ import jdk.nashorn.internal.ir.CatchNode;
 import java.util.Scanner;
 import java.time.LocalDate;
 
+/**
+ * The type Vehicle rental app.
+ */
 public class VehicleRentalApp {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         RentalSystem rentalSystem = RentalSystem.getInstance();
