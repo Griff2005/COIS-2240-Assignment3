@@ -2,3 +2,6 @@ RENT | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $500.0
 RETURN | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $20.0
 RENT | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $500.0
 RETURN | Plate: null | src.Customer: George | Date: 2025-04-05 | Amount: $20.0
+RENT | Plate: AAA111 | src.Customer: George | Date: 2025-04-05 | Amount: $500.0
+RETURN | Plate: AAA111 | src.Customer: George | Date: 2025-04-05 | Amount: $2.0
+RENT | Plate: BBB222 | src.Customer: George | Date: 2025-04-05 | Amount: $48.0

@@ -1,0 +1,2 @@
+|     src.Car          | AAA111 | Toyota | Camry | 2016 | AVAILABLE | | Seats: 5
+|     src.Car          | BBB222 | Ford | Focus | 1987 | AVAILABLE | | Seats: 5
